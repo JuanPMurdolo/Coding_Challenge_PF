@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, validate
 
-class PlainChartData(Schema):
+class PlainChartDataSchema(Schema):
     sprocket_production_goal = fields.Int()
     sprocket_production_rate = fields.Int()
     time = fields.Int()
@@ -17,12 +17,12 @@ class PlainSprocketSchema(Schema):
     pitch = fields.Int()
 
 class SprocketSchema(PlainSprocketSchema):
-    factory_id = fields.Int()
-    factory = fields.Nested(PlainFactorySchema(), dump_only=True)
+    factory_id = fields.Int(load_only=True)
+    factory = fields.Nested(PlainFactorySchema(), dump_only=True, load_only=True)
 
-class ChartDataSchema(PlainChartData):
-    factory_id = fields.Int()
-    factory = fields.Nested(PlainFactorySchema(), dump_only=True)
+class ChartDataSchema(PlainChartDataSchema):
+    factory_id = fields.Int(dump_only=True, load_only=True)
+    factory = fields.Nested(PlainFactorySchema(), dump_only=True, load_only=True)
 
 class FactorySchema(PlainFactorySchema):
     #sprockets only works for knowning which sprockets are being produced in the factory

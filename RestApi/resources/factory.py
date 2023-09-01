@@ -3,7 +3,7 @@ from flask_smorest import abort, Blueprint
 from flask import request
 from flask.views import MethodView
 from sqlalchemy.exc import SQLAlchemyError
-from schemas import ChartDataSchema
+from schemas import ChartDataSchema, PlainChartDataSchema
 from models.chart_data import ChartDataModel
 from models.factory import FactoryModel
 from schemas import FactorySchema
@@ -14,6 +14,7 @@ factoryBlueprint = Blueprint(
     description='Operations on factories'
 )
 
+@factoryBlueprint.route('/')
 class FactoryView(MethodView):
     @factoryBlueprint.response(200, FactorySchema(many=True))
     def get(self):
@@ -21,6 +22,7 @@ class FactoryView(MethodView):
 
 @factoryBlueprint.route('/<int:factory_id>')
 class FactoryView(MethodView):
+
     @factoryBlueprint.arguments(FactorySchema)
     @factoryBlueprint.response(201, FactorySchema)
     def post(self, factory_data, factory_id):
@@ -70,7 +72,7 @@ class FactoryView(MethodView):
     
 @factoryBlueprint.route('/<int:factory_id>/chart/<chart_id>')
 class FactoryView(MethodView):
-    @factoryBlueprint.arguments(ChartDataSchema)
+    @factoryBlueprint.arguments(PlainChartDataSchema)
     @factoryBlueprint.response(200, FactorySchema)
     def put(self, chart_data, factory_id, chart_id):
         factory = FactoryModel.query.get_or_404(factory_id)
