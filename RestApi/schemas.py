@@ -32,6 +32,9 @@ class FactorySchema(PlainFactorySchema):
 class FactorySprocketSchema(Schema):
     factory = fields.Nested(PlainFactorySchema())
     sprocket = fields.Nested(PlainSprocketSchema())
+
+class FactoryUpdateSchema(Schema):
+    name = fields.Str(validate=validate.Length(min=1, max=50), required=False)
 '''
 I would have added an order schema and a stock control for the sprockets so it would be something like this
 

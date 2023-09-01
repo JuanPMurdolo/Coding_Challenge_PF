@@ -3,6 +3,7 @@ from flask_smorest import abort, Blueprint
 from flask import request
 from flask.views import MethodView
 from sqlalchemy.exc import SQLAlchemyError
+from schemas import FactoryUpdateSchema
 from models import SprocketModel
 from schemas import SprocketSchema
 from schemas import PlainSprocketSchema
@@ -45,15 +46,14 @@ class FactoryView(MethodView):
             abort(404, message="Factory not found")
         return factory
 
-    @factoryBlueprint.arguments(FactorySchema)
-    @factoryBlueprint.response(200, FactorySchema)
+    @factoryBlueprint.arguments(FactoryUpdateSchema)
+    @factoryBlueprint.response(200, FactoryUpdateSchema)
     def put(self, factory_data, factory_id):
         factory = FactoryModel.query.get_or_404(factory_id)
         if factory is None:
             abort(404, message="Factory not found")
-        factory = FactoryModel(factory_id, **factory_data)
+        factory.name = factory_data['name']
         try:
-            db.session.add(factory)
             db.session.commit()
         except SQLAlchemyError as e:
             db.session.rollback()
@@ -81,7 +81,11 @@ class FactoryView(MethodView):
         factory = FactoryModel.query.get_or_404(factory_id)
         if factory is None:
             abort(404, message="Factory not found")
-        chart = ChartDataModel(chart_id, **chart_data)
+        chart = ChartDataModel.query.get(chart_id)
+        if chart is None:
+            chart = ChartDataModel(id=chart_id, **chart_data)
+        else:
+            abort(400, message="Chart already exists")
         factory.chart_data.append(chart)
         try:
             db.session.add(chart)

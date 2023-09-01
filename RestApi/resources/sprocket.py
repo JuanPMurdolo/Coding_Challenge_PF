@@ -3,6 +3,7 @@ from flask_smorest import abort, Blueprint
 from flask import request
 from flask.views import MethodView
 from sqlalchemy.exc import SQLAlchemyError
+from schemas import PlainSprocketSchema
 from schemas import SprocketSchema
 from models import FactoryModel, SprocketModel
 from schemas import FactorySchema
@@ -40,13 +41,17 @@ class SprocketView(MethodView):
             abort(404, message="Sprocket not found")
         return sprocket
     
-    @sprocketBlueprint.arguments(SprocketSchema)
-    @sprocketBlueprint.response(200, SprocketSchema)
+    @sprocketBlueprint.arguments(PlainSprocketSchema)
+    @sprocketBlueprint.response(200, PlainSprocketSchema)
     def put(self, sprocket_data, sprocket_id):
         sprocket = SprocketModel.query.get_or_404(sprocket_id)
         if sprocket is None:
             abort(404, message="Sprocket not found")
-        sprocket = SprocketModel(id=sprocket_id, **sprocket_data)
+        
+        sprocket.teeth = sprocket_data['teeth']
+        sprocket.pitch_diameter = sprocket_data['pitch_diameter']
+        sprocket.outside_diameter = sprocket_data['outside_diameter']
+        sprocket.pitch = sprocket_data['pitch']
         try:
             db.session.add(sprocket)
             db.session.commit()

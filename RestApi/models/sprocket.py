@@ -9,4 +9,4 @@ class SprocketModel(db.Model):
     outside_diameter = db.Column(db.Integer(), nullable=False)
     pitch = db.Column(db.Integer(), nullable=False)
     factory_id = db.Column(db.Integer, db.ForeignKey('factories.id'), nullable=False)
-    factory = db.relationship('FactoryModel', secondary="factory_sprockets",back_populates='sprockets', lazy='dynamic')    
+    factory = db.relationship('FactoryModel', secondary="factory_sprockets", back_populates='sprockets', lazy='dynamic')  
