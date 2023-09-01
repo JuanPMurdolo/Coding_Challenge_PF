@@ -17,8 +17,8 @@ class PlainSprocketSchema(Schema):
     pitch = fields.Int()
 
 class SprocketSchema(PlainSprocketSchema):
-    factory_id = fields.Int(load_only=True)
-    factory = fields.Nested(PlainFactorySchema(), dump_only=True, load_only=True)
+    factory_id = fields.Int(load_only=True, nullable=True)
+    factory = fields.Nested(PlainFactorySchema(), dump_only=True, load_only=True, nullable=True)
 
 class ChartDataSchema(PlainChartDataSchema):
     factory_id = fields.Int(dump_only=True, load_only=True)
@@ -28,6 +28,10 @@ class FactorySchema(PlainFactorySchema):
     #sprockets only works for knowning which sprockets are being produced in the factory
     sprockets = fields.List(fields.Nested(SprocketSchema(), dump_only=True, default=[]))
     chart_data = fields.List(fields.Nested(ChartDataSchema(), dump_only=True, default=[]))
+
+class FactorySprocketSchema(Schema):
+    factory = fields.Nested(PlainFactorySchema())
+    sprocket = fields.Nested(PlainSprocketSchema())
 '''
 I would have added an order schema and a stock control for the sprockets so it would be something like this
 

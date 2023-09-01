@@ -3,6 +3,9 @@ from flask_smorest import abort, Blueprint
 from flask import request
 from flask.views import MethodView
 from sqlalchemy.exc import SQLAlchemyError
+from models import SprocketModel
+from schemas import SprocketSchema
+from schemas import PlainSprocketSchema
 from schemas import ChartDataSchema, PlainChartDataSchema
 from models.chart_data import ChartDataModel
 from models.factory import FactoryModel
@@ -78,10 +81,32 @@ class FactoryView(MethodView):
         factory = FactoryModel.query.get_or_404(factory_id)
         if factory is None:
             abort(404, message="Factory not found")
-        chart = ChartDataModel(**chart_data)
+        chart = ChartDataModel(chart_id, **chart_data)
         factory.chart_data.append(chart)
         try:
             db.session.add(chart)
+            db.session.add(factory)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            abort(500, message="Internal server error")
+        return factory
+    
+
+@factoryBlueprint.route('/<int:factory_id>/sprocket/<int:sprocket_id>')
+class FactoryView(MethodView):
+    @factoryBlueprint.arguments(PlainSprocketSchema)
+    @factoryBlueprint.response(200, FactorySchema)
+    def put(self, sprocket_data, factory_id, sprocket_id):
+        factory = FactoryModel.query.get_or_404(factory_id)
+        if factory is None:
+            abort(404, message="Factory not found")
+        sprocket = SprocketModel.query.get(sprocket_id)
+        if sprocket is None:
+            sprocket = SprocketModel(id = sprocket_id, **sprocket_data, factory_id = factory_id)
+        factory.sprockets.append(sprocket)
+        try:
+            db.session.add(sprocket)
             db.session.add(factory)
             db.session.commit()
         except SQLAlchemyError as e:

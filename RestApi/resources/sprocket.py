@@ -3,7 +3,7 @@ from flask_smorest import abort, Blueprint
 from flask import request
 from flask.views import MethodView
 from sqlalchemy.exc import SQLAlchemyError
-from RestApi.schemas import SprocketSchema
+from schemas import SprocketSchema
 from models import FactoryModel, SprocketModel
 from schemas import FactorySchema
 from db import db
@@ -24,7 +24,7 @@ class SprocketView(MethodView):
     @sprocketBlueprint.arguments(SprocketSchema)
     @sprocketBlueprint.response(201, SprocketSchema)
     def post(self, sprocket_data, sprocket_id):
-        sprocket = SprocketModel(sprocket_id, **sprocket_data)
+        sprocket = SprocketModel(id = sprocket_id, **sprocket_data)
         try:
             db.session.add(sprocket)
             db.session.commit()
@@ -32,3 +32,38 @@ class SprocketView(MethodView):
             db.session.rollback()
             abort(500, message="Internal server error")
         return sprocket, 201
+    
+    @sprocketBlueprint.response(200, SprocketSchema)
+    def get(self, sprocket_id):
+        sprocket = SprocketModel.query.get_or_404(sprocket_id)
+        if sprocket is None:
+            abort(404, message="Sprocket not found")
+        return sprocket
+    
+    @sprocketBlueprint.arguments(SprocketSchema)
+    @sprocketBlueprint.response(200, SprocketSchema)
+    def put(self, sprocket_data, sprocket_id):
+        sprocket = SprocketModel.query.get_or_404(sprocket_id)
+        if sprocket is None:
+            abort(404, message="Sprocket not found")
+        sprocket = SprocketModel(id=sprocket_id, **sprocket_data)
+        try:
+            db.session.add(sprocket)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            abort(500, message="Internal server error")
+        return sprocket
+    
+    @sprocketBlueprint.response(204)
+    def delete(self, sprocket_id):
+        sprocket = SprocketModel.query.get_or_404(sprocket_id)
+        if sprocket is None:
+            abort(404, message="Sprocket not found")
+        try:
+            db.session.delete(sprocket)
+            db.session.commit()
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            abort(500, message="Internal server error")
+        return None

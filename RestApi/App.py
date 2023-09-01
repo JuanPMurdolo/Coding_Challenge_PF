@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from db import db
 
 from resources.factory import factoryBlueprint
+from resources.sprocket import sprocketBlueprint
 
 def create_app(db_url = None):
     app = Flask(__name__)
@@ -28,6 +29,7 @@ def create_app(db_url = None):
     api = Api(app)
 
     api.register_blueprint(factoryBlueprint)
+    api.register_blueprint(sprocketBlueprint)
 
     
 
