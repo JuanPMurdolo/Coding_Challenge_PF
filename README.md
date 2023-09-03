@@ -18,3 +18,19 @@ o	An endpoint that will create new sprocket ✓
 o	An endpoint that will update sprocket for a given id ✓
    -  Seed data/examples of the factory and sprocket are in the attached JSON files
    -  Include a README with instructions on how to stand up the database and application
+
+Notes:
+The venv module supports creating lightweight “virtual environments”, each with their own independent set of Python packages installed in their site directories. A virtual environment is created on top of an existing Python installation, known as the virtual environment’s “base” Python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
+
+
+For runing the app on a test environment:
+
+create a new python venv
+- run the command on the root directory: python -m venv .venv (The .venv is for the creation of venv on this directory)
+- cd RestApi
+- run pip install -r requirements.txt
+- use: flask run
+- open http://127.0.0.1:5000/swagger-ui on your desired browser
+- then you will have a swagger GUI to test the RestAPI endpoints
+   - for testing the factory one use the factory endpoints
+   - for testing the sprocket one use the sprocket endpoint 
