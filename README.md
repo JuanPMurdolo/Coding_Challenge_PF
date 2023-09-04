@@ -30,7 +30,7 @@ For runing the app on a test environment: create a new python venv, use pip for 
 - cd RestApi
 - run pip install -r requirements.txt
 - use: flask run
-- open http://127.0.0.1:5000/swagger-ui on your desired browser
+- open http://127.0.0.1:5000/swagger-ui on your desired browser or you can use a Postman kind of tool for testing the endpoints too.
 - then you will have a swagger GUI to test the RestAPI endpoints
    - for testing the factory one use the factory endpoints
    - for testing the sprocket one use the sprocket endpoint 
