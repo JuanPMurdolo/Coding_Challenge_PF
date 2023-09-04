@@ -23,7 +23,7 @@ Notes:
 The venv module supports creating lightweight “virtual environments”, each with their own independent set of Python packages installed in their site directories. A virtual environment is created on top of an existing Python installation, known as the virtual environment’s “base” Python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.
 
 
-For runing the app on a test environment: create a new python venv, use pip for installation of the requirements, run the flask app and then test using swagger or the postman collection that exists in the Tests folder in the root directory.
+For runing the app on a test environment: create a new python venv, use pip for installation of the requirements, run the flask app and then test using swagger or the postman collection that exists in the Tests folder in the root directory (.\Coding_Challenge_PF\Tests\PF_Coding_Challenge.postman_collection.json).
 
 - run the command on the root directory (/Coding_Challenge_PF): python -m venv .venv (The .venv is for the creation of venv on this directory)
 - Close the terminal you were using and open a new one for the venv to load you should see the (.venv) line in the new command line.
