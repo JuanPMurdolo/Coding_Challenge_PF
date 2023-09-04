@@ -26,7 +26,7 @@ The venv module supports creating lightweight “virtual environments”, each w
 For runing the app on a test environment: create a new python venv, use pip for installation of the requirements, run the flask app and then test using swagger or the postman collection that exists in the Tests folder in the root directory (.\Coding_Challenge_PF\Tests\PF_Coding_Challenge.postman_collection.json).
 
 - run the command on the root directory (/Coding_Challenge_PF): python -m venv .venv (The .venv is for the creation of venv on this directory) (depending of your version this command could also be python3 -m env .venv or even python<version> -m env .venv where version could be for example 3.10)
-- Close the terminal you were using and open a new one for the venv to load you should see the (.venv) line in the new command line.
+- Close the terminal you were using and open a new one for the venv to load you should see the (.venv) line in the new command line (Screenshot in Tests folder).
 - cd RestApi
 - run pip install -r requirements.txt
 - use: flask run
