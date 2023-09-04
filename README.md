@@ -26,6 +26,7 @@ The venv module supports creating lightweight “virtual environments”, each w
 For runing the app on a test environment: create a new python venv, use pip for installation of the requirements, run the flask app and then test using swagger endpoints.
 
 - run the command on the root directory: python -m venv .venv (The .venv is for the creation of venv on this directory)
+- Close the terminal you were using and open a new one for the venv to load you should see the (.venv) line in the new command line.
 - cd RestApi
 - run pip install -r requirements.txt
 - use: flask run
