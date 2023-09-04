@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "4a8094ea-69f6-45ee-8ca9-f4cdeb6453b3",
+		"name": "PF_Coding_Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15670490"
+	},
+	"item": [
+		{
+			"name": "Factory",
+			"item": [
+				{
+					"name": "Get all Factories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Factory by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Factory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Alpha\",\r\n  \"sprockets\": [],\r\n  \"chart_data\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Factory Name by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"AlphaAS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Data Chart to a Factory by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sprocket_production_goal\": 0,\r\n  \"sprocket_production_rate\": 0,\r\n  \"time\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/4/chart/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"4",
+								"chart",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Sprocket to a Factory by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teeth\": 0,\r\n  \"pitch_diameter\": 0,\r\n  \"outside_diameter\": 0,\r\n  \"pitch\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/4/sprocket/72",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"4",
+								"sprocket",
+								"72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Factory By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/factory/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"factory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sprocket",
+			"item": [
+				{
+					"name": "Return all sprockets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/sprocket",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sprocket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return 1 sprocket by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/sprocket/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sprocket",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create 1 Sprocket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teeth\": 0,\r\n  \"pitch_diameter\": 0,\r\n  \"outside_diameter\": 0,\r\n  \"pitch\": 0,\r\n  \"factory_id\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/sprocket/42",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sprocket",
+								"42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit and sprocket by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"teeth\": 0,\r\n  \"pitch_diameter\": 0,\r\n  \"outside_diameter\": 0,\r\n  \"pitch\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/sprocket/42",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sprocket",
+								"42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Sprocket by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/sprocket/42",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sprocket",
+								"42"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
