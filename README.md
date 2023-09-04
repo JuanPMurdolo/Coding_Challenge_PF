@@ -47,6 +47,4 @@ For runing the app on a test environment: create a new python venv, use pip for 
          - factory can be 0 or a positive value but it is always a number
       - PUT /sprocket/{sprocket_id} with data ({"teeth": 13,"pitch_diameter": 13,  "outside_diameter": 13,"pitch": 13})
       - DELETE /sprocket/{sprocket_id}
-- then you will have a swagger GUI to test the RestAPI endpoints
-   - for testing the factory one use the factory endpoints
-   - for testing the sprocket one use the sprocket endpoint 
+
