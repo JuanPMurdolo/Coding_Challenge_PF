@@ -27,6 +27,7 @@ For runing the app on a test environment: create a new python venv, use pip for 
 
 - run the command on the root directory (/Coding_Challenge_PF): python -m venv .venv (The .venv is for the creation of venv on this directory) (depending of your version this command could also be python3 -m env .venv or even python<version> -m env .venv where version could be for example 3.10)
 - Also the python interpreter should be the one inside of that .venv
+   - https://code.visualstudio.com/docs/python/environments
 - Close the terminal you were using and open a new one for the venv to load you should see the (.venv) line in the new command line (Screenshot in Tests folder).
 - cd RestApi
 - run pip install -r requirements.txt
